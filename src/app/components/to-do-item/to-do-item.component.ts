@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToDo } from 'src/app/interfaces/to-do';
 
 @Component({
@@ -15,8 +15,7 @@ export class ToDoItemComponent implements OnInit {
     titulo: '',
     feito: false
   }
-  
-
+  @Output() remove: EventEmitter<any> = new EventEmitter;
 
   constructor() { }
 
@@ -24,7 +23,7 @@ export class ToDoItemComponent implements OnInit {
   }
 
   removeTodo(): void {
-
+    this.remove.emit(this.todo)
   }
 
   markAsDone():void{
