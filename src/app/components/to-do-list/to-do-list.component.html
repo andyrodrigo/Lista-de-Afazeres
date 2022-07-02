@@ -8,6 +8,9 @@
                 <mat-label>Tarefa:</mat-label>
                 <input type="text" #todo matInput placeholder="Digite sa tarefa" (keyup.enter)="addTodo(todo.value); todo.value = ''">
             </mat-form-field>
+            <mat-list role="list">
+                <app-to-do-item></app-to-do-item>
+            </mat-list>
         </mat-card-content>
     </mat-card>
 </section>
