@@ -1,1 +1,13 @@
-<p>to-do-list works!</p>
+<section class="wrapper">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Lista de Tarefas</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Tarefa:</mat-label>
+                <input type="text" #todo matInput placeholder="Digite sa tarefa" (keyup.enter)="addTodo(todo.value); todo.value = ''">
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</section>
