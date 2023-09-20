@@ -1,0 +1,21 @@
+.linha {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: #e8ebef;
+  box-shadow: #5f6368 5px 5px 5px;
+  width: 95%;
+}
+
+.nome-tarefa {
+  cursor: grab;
+}
+
+.nome-tarefa:active {
+  cursor: grabbing;
+}
+
+.caixa-btos {
+  min-width: 80px;
+}

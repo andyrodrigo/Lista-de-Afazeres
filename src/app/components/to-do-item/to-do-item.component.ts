@@ -1,33 +1,58 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ToDo } from 'src/app/interfaces/to-do';
+
+import { MatDialog } from '@angular/material/dialog';
+
+import { CaixaEdicaoComponent } from '../caixa-edicao/caixa-edicao.component';
+import { CaixaConfirmarComponent } from '../caixa-confirmar/caixa-confirmar.component';
+import { ITarefa, Tarefa } from 'src/app/interfaces/tarefa.model';
 
 @Component({
   selector: 'app-to-do-item',
   templateUrl: './to-do-item.component.html',
-  styleUrls: ['./to-do-item.component.css']
+  styleUrls: ['./to-do-item.component.css'],
 })
 export class ToDoItemComponent implements OnInit {
+  @Input() tarefa: ITarefa = new Tarefa();
 
-  feito = false;
+  @Output() emitir = new EventEmitter<ITarefa>();
+  @Output() salvar = new EventEmitter();
 
-  @Input() todo: ToDo = {
-    id: 0,
-    titulo: '',
-    feito: false
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit(): void {}
+
+  protected editarTarefa(): void {
+    const dialogRef = this.dialog.open(CaixaEdicaoComponent, {
+      width: '250px',
+      data: this.tarefa.nome,
+    });
+
+    dialogRef.afterClosed().subscribe((resposta) => {
+      if (resposta && resposta.trim().length > 0) {
+        this.tarefa.nome = resposta.trim();
+        this.salvar.emit();
+      }
+    });
   }
-  @Output() remove: EventEmitter<any> = new EventEmitter;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  protected marcarTarefa(): void {
+    this.tarefa.feito = !this.tarefa.feito;
+    this.salvar.emit();
   }
 
-  removeTodo(): void {
-    this.remove.emit(this.todo)
-  }
+  protected chamarExclusao(): void {
+    const dialogRef = this.dialog.open(CaixaConfirmarComponent, {
+      width: '300px',
+      data: {
+        mensagem: `Excluir ${this.tarefa.nome}?`,
+        nome: this.tarefa.nome,
+      },
+    });
 
-  markAsDone():void{
-    this.feito = true;
+    dialogRef.afterClosed().subscribe((resposta) => {
+      if (resposta === true) {
+        this.emitir.emit(this.tarefa);
+      }
+    });
   }
-
 }
