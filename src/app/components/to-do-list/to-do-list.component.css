@@ -1,3 +1,27 @@
-.wrapper{
-    margin-top: 5%;
+.caixa-btos1 {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.caixa-btos2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bto-filtro {
+  margin-right: 12px;
+}
+
+.caixa-lista {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.caixa-item {
+  width: 90%;
+  margin: 5px 0 5px 0;
+  display: flex;
+  flex-direction: column;
 }

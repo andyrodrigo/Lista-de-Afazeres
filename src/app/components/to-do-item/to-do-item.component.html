@@ -1,12 +1,40 @@
-<mat-list-item role="listitem">
-    <p [ngStyle]=" { textDecoration: feito ? 'line-through' : 'none' }">
-        {{ todo.titulo }}
-    </p>
-    
-    <button mat-icon-button aria-label="Marca como concluído" (click)="markAsDone()">
-        <mat-icon>done</mat-icon>
+<main class="linha">
+  <div>
+    <button
+      mat-icon-button
+      aria-label="Botão de Marcar Tarefa Como concluída"
+      (click)="marcarTarefa()"
+      style="color: green"
+    >
+      <mat-icon>{{ tarefa.feito ? "done_all" : "done" }}</mat-icon>
     </button>
-        
-    <button mat-button color="warn" (click)="removeTodo()">Excluir</button>
 
-</mat-list-item>
+    <span
+      cdkDrag
+      class="nome-tarefa"
+      [ngStyle]="{
+        'text-decoration': tarefa.feito ? 'line-through' : 'none',
+        'font-weight': tarefa.feito ? 'normal' : 'bolder'
+      }"
+    >
+      {{ tarefa.nome | titlecase }}
+    </span>
+  </div>
+
+  <div class="caixa-btos">
+    <button
+      mat-icon-button
+      aria-label="Botão de Editar"
+      (click)="editarTarefa()"
+    >
+      <mat-icon>mode</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      aria-label="Botão de Deletar"
+      (click)="chamarExclusao()"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</main>

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>{{ data.mensagem }}</h1>
+<div mat-dialog-actions class="rodape">
+  <button mat-icon-button (click)="rejeitar()" aria-label="Botão de Cancelar">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    (click)="confirmar()"
+    aria-label="Botão de Confimar"
+    cdkFocusInitial
+  >
+    <mat-icon>task_alt</mat-icon>
+  </button>
+</div>
